@@ -38,7 +38,7 @@ namespace PersonaDB
                     tbArcana.Text = "";
                     tbPersona.Text = "";
                     tbGrupo.Text = "";
-                    
+
                 }
                 else
                 {
@@ -53,6 +53,26 @@ namespace PersonaDB
             {
                 MessageBox.Show($"Ocurrió un error: {ex.Message}");
             }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                acciones.Eliminar(Convert.ToInt32(tbId));
+                tbId.Text = "";
+                gdPersona.DataSource = null;
+                gdPersona.DataSource = acciones.Leer();
+            }
+            catch (FormatException) // Específicamente capturamos el error de formato al intentar convertir el ID
+            {
+                MessageBox.Show("El ID debe ser un número válido.");
+            }
+            catch (Exception ex) // Para cualquier otro tipo de excepción
+            {
+                MessageBox.Show($"Ocurrió un error: {ex.Message}");
+            }
+
         }
     }
 }

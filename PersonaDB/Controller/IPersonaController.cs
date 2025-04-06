@@ -6,5 +6,6 @@ namespace PersonaDB.Controller
     {
         List<Social> Leer();
         bool Insertar(Social social);
+        bool Eliminar(int ID);
     }
 }

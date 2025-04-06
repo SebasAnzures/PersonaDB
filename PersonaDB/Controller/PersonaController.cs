@@ -78,5 +78,25 @@ namespace PersonaDB.Controller
                 throw;
             }
         }
+        public bool Eliminar(int ID)
+        {
+            try
+            {
+                using (SqlConnection conn = conexion.GetConnection())
+                {
+                    string query = "Eliminarsl";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idsocial", ID);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }
